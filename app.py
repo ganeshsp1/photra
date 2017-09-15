@@ -74,23 +74,6 @@ def makeYqlQuery(req):
     return city
 
 def makeWebhookResult(data):
-
-    result = data.get('results')
-    if result is None:
-        return {}
-
-    geometry = result.get('geometry')
-    if geometry is None:
-        return {}
-		
-	location = geometry.get('location')
-    if location is None:
-        return {}
-	
-	
-	#baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-	lat=location.get('lat')
-	lng=location.get('lng')
    
     #yql_url = 'location=' + lat + ',' + lng
 
@@ -98,8 +81,8 @@ def makeWebhookResult(data):
     
 
     return {
-        "speech": lat,
-        "displayText": lat,
+        "speech": "Hi",
+        "displayText": "Hi",
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
