@@ -100,9 +100,9 @@ def makeWebhookResult(data):
     for d in newResults:
         photos=d.get('photos')
         for photo in photos:
-            photosList.append( photo.get('photo_reference') )
+            photosList.append(photo.get('photo_reference'))
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
-    yql_url = baseurl+photosList[ 1 ]
+    yql_url = baseurl+photosList[ 0 ]
     return {
         "speech": "Hi",
         "displayText": "Hi",
