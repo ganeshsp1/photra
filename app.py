@@ -88,17 +88,17 @@ def makeWebhookResult(data):
             return {}
     baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
     
-#lat = location.get('lat')
-#lng = location.get('lng')   
-    #yql_url = baseurl + '&location=' + lat + ',' + lng	
+    lat = location.get('lat')
+    lng = location.get('lng')   
+    yql_url = baseurl + '&location=' + lat + ',' + lng
 #newResults=newResult.get('results')
  #  if newResults is None:
       #  return {}
 #for d in newResults:
 
     return {
-        "speech": "Hi",
-        "displayText": "Hi",
+        "speech": yql_url,
+        "displayText": yql_url,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
