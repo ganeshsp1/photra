@@ -96,8 +96,9 @@ def makeWebhookResult(data):
     newResults=newResult.get('results')
     if newResults is None:
         return {}
+    photosList = "tets"
     for d in newResults:
-        photos=d.get('photos')
+        photos = d.get('photos')
         for photo in photos:
             photosList = photo.get('photo_reference')
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
