@@ -116,6 +116,35 @@ def makeWebhookResult(data):
           "platform": "google",
           "textToSpeech": "Hi"
         },
+		    {
+          "type": "list_card",
+          "platform": "google",
+          "title": "Places",
+          "items": [
+            {
+              "optionInfo": {
+                "key": "Key1",
+                "synonyms": []
+              },
+              "title": "TajMahal",
+              "description": "desc",
+              "image": {
+                "url": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
+              }
+            },
+            {
+              "optionInfo": {
+                "key": "key2",
+                "synonyms": []
+              },
+              "title": "effiel Tower",
+              "description": "desc",
+              "image": {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"
+              }
+            }
+          ]
+		  },
         {
           "type": "basic_card",
           "platform": "google",
