@@ -1,3 +1,4 @@
+
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -52,11 +53,11 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    baseurl = "https://maps.googleapis.com/maps/api/geocode/json?address="
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
+    yql_url = baseurl + yql_query
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -70,20 +71,36 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
-
+    return city
 
 def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
 
-    result = query.get('results')
+    result = data.get('results')
     if result is None:
         return {}
 
-    channel = result.get('channel')
-    if channel is None:
+    geometry = result.get('geometry')
+    if geometry is None:
+        return {}
+		
+	location = geometry.get('location')
+    if location is None:
+        return {}
+	
+	
+	baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
+
+   
+    yql_url = baseurl + '&location='+location.get('lat')+','+location.get('lng')
+    newResult = urlopen(yql_url).read()
+	
+	newResults=newResult.get('results')
+	   if newResults is None:
+        return {}
+	for d in newResults:
+
+	geometry = newResults.get('geometry')
+    if geometry is None:
         return {}
 
     item = channel.get('item')
@@ -105,7 +122,7 @@ def makeWebhookResult(data):
     print(speech)
 
     return {
-        "speech": "Yo Yo Ganesh",
+        "speech": yql_url,
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
