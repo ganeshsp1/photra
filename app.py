@@ -91,17 +91,54 @@ def makeWebhookResult(data):
     lat = location.get('lat')
     lng = location.get('lng')
     yql_url = baseurl+" &location=" + str(lat) + "," + str(lng)
-#newResults=newResult.get('results')
- #  if newResults is None:
-      #  return {}
-#for d in newResults:
-
+    result = urlopen(yql_url).read()
+    newResult = json.loads(result)
+    newResults=newResult.get('results')
+    if newResults is None:
+        return {}
+    photosList = [];
+    for d in newResults:
+        photos=d.get('photos')
+        photosList.append( photos[0].get('photo_reference') );
+    baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
+    yql_url = baseurl+photosList[0]
     return {
-        "speech": yql_url,
-        "displayText": yql_url,
+        "speech": "Hi",
+        "displayText": "Hi",
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "apiai-weather-webhook-sample",
+         "messages": [
+		    {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Hi"
+        }, {
+          "type": "carousel_card",
+          "platform": "google",
+          "items": [
+            {
+              "optionInfo": {
+                "key": "KEY1",
+                "synonyms": []
+              },
+              "title": "tAJmAHAL",
+              "image": {
+                "url": yql_url
+              }
+            },
+            {
+              "optionInfo": {
+                "key": "KEY2",
+                "synonyms": []
+              },
+              "title": "eFFIEL TOWER",
+              "image": {
+                "url": yql_url
+              }
+            }
+          ]
+        }]
     }
 
 
