@@ -102,7 +102,7 @@ def makeWebhookResult(data):
         #for photo in photos:
         #photosList = photos[ 0 ].get('photo_reference')
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
-    yql_url = baseurl+photosList
+    yql_url1 = baseurl+photosList
     return {
         "speech": str(lat) + "," + str(lng),
         "displayText": yql_url,
