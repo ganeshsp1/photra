@@ -94,6 +94,7 @@ def makeWebhookResult(data):
  #  if newResults is None:
       #  return {}
 #for d in newResults:
+
     return {
         "speech": "Hi",
         "displayText": "Hi",
