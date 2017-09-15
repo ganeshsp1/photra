@@ -105,39 +105,11 @@ def makeWebhookResult(data):
     print(speech)
 
     return {
-        "messages": [
-  {
-    "type": 0,
-    "speech": ""
-  },
-  {
-    "type": 1,
-    "title": "",
-    "subtitle": "",
-    "imageUrl": "",
-    "buttons": [
-      {
-        "text": "button",
-        "postback": "payload"
-      }
-    ],
-  },
-  {
-    "type": 2,
-    "replies": [
-      "one",
-      "two"
-    ]   
-  },  
-  {
-    "type": 3,
-    "imageUrl": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
-  },
-  {
-    "type": 4,
-    "payload": {}
-  },
-   'google': {
+    
+        "speech": "Yo Yo Ganesh",
+        "displayText": speech,
+         "data": {
+  'google': {
     'expectUserResponse': true,
     'isSsml': false,
     'noInputPrompts': [],
@@ -188,8 +160,9 @@ def makeWebhookResult(data):
       }
     }
   }
-]
-    }
+},
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"}
 
 
 if __name__ == '__main__':
