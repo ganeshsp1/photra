@@ -75,29 +75,25 @@ def makeYqlQuery(req):
 
 def makeWebhookResult(data):
 
-    result = data.get('results')
-    if result is None:
-        return {}
+    #result = data.get('results')
+    #if result is None:
+    #    return {}
         
-    geometry = result.get('geometry')
-    if geometry is None:
-        return {}
-    location = geometry.get('location')
-    if location is None:
-        return {}
-    baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-	
-    
-	#lat = location.get('lat')
-	#lng = location.get('lng')   
+    #geometry = result.get('geometry')
+    #if geometry is None:
+    #    return {}
+    #location = geometry.get('location')
+    #if location is None:
+    #    return {}
+    #baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
+     res = json.dumps(data, indent=4)
+#lat = location.get('lat')
+#lng = location.get('lng')   
     #yql_url = baseurl + '&location=' + lat + ',' + lng	
-	#newResults=newResult.get('results')
-	 #  if newResults is None:
+#newResults=newResult.get('results')
+ #  if newResults is None:
       #  return {}
-	#for d in newResults:
-
-
-    
+#for d in newResults:
 
     return {
         "speech": "Hi",
