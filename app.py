@@ -109,7 +109,40 @@ def makeWebhookResult(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "apiai-weather-webhook-sample",
+		"messages": [
+  {
+    "type": 0,
+    "speech": ""
+  },
+  {
+    "type": 1,
+    "title": "",
+    "subtitle": "",
+    "imageUrl": "",
+    "buttons": [
+      {
+        "text": "button",
+        "postback": "payload"
+      }
+    ],
+  },
+  {
+    "type": 2,
+    "replies": [
+      "one",
+      "two"
+    ]   
+  },  
+  {
+    "type": 3,
+    "imageUrl": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
+  },
+  {
+    "type": 4,
+    "payload": {}
+  }
+]
     }
 
 
