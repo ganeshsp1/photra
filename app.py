@@ -57,17 +57,12 @@ def processRequest(req):
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    #yql_url = baseurl + yql_query
-    #result = urlopen(yql_url).read()
-    #data = json.loads(result)
-    #res = makeWebhookResult(data)
-    return {
-        "speech": "Hi",
-        "displayText": "Hi",
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
+    yql_url = baseurl + yql_query
+    result = urlopen(yql_url).read()
+    data = json.loads(result)
+    res = makeWebhookResult(data)
+    return res
+
 
 def makeYqlQuery(req):
     result = req.get("result")
@@ -80,18 +75,18 @@ def makeYqlQuery(req):
 
 def makeWebhookResult(data):
 
-    #result = data.get('results')
-    #if result is None:
-    #    return {}
+    result = data.get('results')
+    if result is None:
+        return {}
         
-    #geometry = result.get('geometry')
-    #if geometry is None:
-    #    return {}
-    #location = geometry.get('location')
-    #if location is None:
-    #    return {}
-    #baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-     res = json.dumps(data, indent=4)
+    geometry = result.get('geometry')
+    if geometry is None:
+        return {}
+    location = geometry.get('location')
+    if location is None:
+        return {}
+    baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
+    
 #lat = location.get('lat')
 #lng = location.get('lng')   
     #yql_url = baseurl + '&location=' + lat + ',' + lng	
@@ -99,7 +94,6 @@ def makeWebhookResult(data):
  #  if newResults is None:
       #  return {}
 #for d in newResults:
-
     return {
         "speech": "Hi",
         "displayText": "Hi",
