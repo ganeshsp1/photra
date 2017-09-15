@@ -104,39 +104,60 @@ def makeWebhookResult(data):
     print("Response:")
     print(speech)
 
-    return {"messages": [
-  {
-    "type": 0,
-    "speech": ""
-  },
-  {
-    "type": 1,
-    "title": "",
-    "subtitle": "",
-    "imageUrl": "",
-    "buttons": [
-      {
-        "text": "button",
-        "postback": "payload"
+    return {
+        'data': {
+  'google': {
+    'expectUserResponse': true,
+    'isSsml': false,
+    'noInputPrompts': [],
+    'richResponse': {
+      'items': [
+        {
+          'simpleResponse': {
+            'textToSpeech': 'hello',
+            'displayText': 'hi'
+          }
+        }
+      ],
+      'suggestions': [
+        {
+          'title': 'Say this'
+        },
+        {
+          'title': 'or this'
+        }
+      ]
+    },
+    'systemIntent': {
+      'intent': 'actions.intent.OPTION',
+      'data': {
+        '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
+        'listSelect': {
+          'items': [
+            {
+              'optionInfo': {
+                'key': 'key1',
+                'synonyms': [
+                  'key one'
+                ]
+              },
+              'title': ''
+            },
+            {
+              'optionInfo': {
+                'key': 'key2',
+                'synonyms': [
+                  'key two'
+                ]
+              },
+              'title': ''
+            }
+          ]
+        }
       }
-    ],
-  },
-  {
-    "type": 2,
-    "replies": [
-      "one",
-      "two"
-    ]   
-  },  
-  {
-    "type": 3,
-    "imageUrl": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
-  },
-  {
-    "type": 4,
-    "payload": {}
+    }
   }
-]
+}
     }
 
 
