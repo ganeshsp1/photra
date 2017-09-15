@@ -1,3 +1,4 @@
+
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -52,11 +53,11 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    baseurl = "https://maps.googleapis.com/maps/api/geocode/json?address="
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
+    yql_url = baseurl + yql_query
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -70,77 +71,38 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
-
+    return city
 
 def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
 
-    result = query.get('results')
+    result = data.get('results')
     if result is None:
         return {}
 
-    channel = result.get('channel')
-    if channel is None:
+    geometry = result.get('geometry')
+    if geometry is None:
         return {}
-
-    item = channel.get('item')
-    location = channel.get('location')
-    units = channel.get('units')
-    if (location is None) or (item is None) or (units is None):
+		
+	location = geometry.get('location')
+    if location is None:
         return {}
+	
+	
+	baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
+	lat=location.get('lat')
+	lng=location.get('lng')
+   
+    yql_url = 'location='+lat+','+lng
 
-    condition = item.get('condition')
-    if condition is None:
-        return {}
 
-    # print(json.dumps(item, indent=4))
-
-    speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
-             ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
-
-    print("Response:")
-    print(speech)
+    
 
     return {
-        "speech": "Yo Yo Ganesh",
-        "displayText": speech,
+        "speech": yql_url,
+        "displayText": yql_url,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample",
-	    "messages": [
-		    {
-          "type": "simple_response",
-          "platform": "google",
-          "textToSpeech": "Hi"
-        }, {
-          "type": "carousel_card",
-          "platform": "google",
-          "items": [
-            {
-              "optionInfo": {
-                "key": "KEY1",
-                "synonyms": []
-              },
-              "title": "tAJmAHAL",
-              "image": {
-                "url": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
-              }
-            },
-            {
-              "optionInfo": {
-                "key": "KEY2",
-                "synonyms": []
-              },
-              "title": "eFFIEL TOWER",
-              "image": {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"
-              }
-            }
-          ]
-        }]
+        "source": "apiai-weather-webhook-sample"
     }
 
 
