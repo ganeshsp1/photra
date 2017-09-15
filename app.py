@@ -57,12 +57,17 @@ def processRequest(req):
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + yql_query
-    result = urlopen(yql_url).read()
-    data = json.loads(result)
-    res = makeWebhookResult(data)
-    return res
-
+    #yql_url = baseurl + yql_query
+    #result = urlopen(yql_url).read()
+    #data = json.loads(result)
+    #res = makeWebhookResult(data)
+   return {
+        "speech": "Hi",
+        "displayText": "Hi",
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 def makeYqlQuery(req):
     result = req.get("result")
