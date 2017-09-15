@@ -74,19 +74,6 @@ def makeYqlQuery(req):
     return city
 
 def makeWebhookResult(data):
-
-    result = data.get('results')
-    if result is None:
-        return {}
-        
-    geometry = result.get('geometry')
-    if geometry is None:
-        return {}
-    location = geometry.get('location')
-    if location is None:
-        return {}
-    baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-    
 #lat = location.get('lat')
 #lng = location.get('lng')   
     #yql_url = baseurl + '&location=' + lat + ',' + lng	
