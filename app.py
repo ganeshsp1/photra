@@ -74,6 +74,10 @@ def makeYqlQuery(req):
     return city
 
 def makeWebhookResult(data):
+
+    result = data.get('results')
+    if result is None:
+        return {}
 #lat = location.get('lat')
 #lng = location.get('lng')   
     #yql_url = baseurl + '&location=' + lat + ',' + lng	
