@@ -115,6 +115,31 @@ def makeWebhookResult(data):
           "type": "simple_response",
           "platform": "google",
           "textToSpeech": "Hi"
+        }, {
+          "type": "carousel_card",
+          "platform": "google",
+          "items": [
+            {
+              "optionInfo": {
+                "key": "KEY1",
+                "synonyms": []
+              },
+              "title": "tAJmAHAL",
+              "image": {
+                "url": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
+              }
+            },
+            {
+              "optionInfo": {
+                "key": "KEY2",
+                "synonyms": []
+              },
+              "title": "eFFIEL TOWER",
+              "image": {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"
+              }
+            }
+          ]
         },
 		    {
           "type": "list_card",
@@ -143,7 +168,6 @@ def makeWebhookResult(data):
                 "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"
               }
             }
-          ]
 		  },
         {
           "type": "basic_card",
