@@ -1,4 +1,3 @@
-
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -53,11 +52,11 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://maps.googleapis.com/maps/api/geocode/json?address="
+    baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + yql_query
+    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -71,41 +70,43 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-    return city
+    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+
 
 def makeWebhookResult(data):
+    query = data.get('query')
+    if query is None:
+        return {}
 
-    result = data.get('results')
+    result = query.get('results')
     if result is None:
         return {}
 
-    geometry = result.get('geometry')
-    if geometry is None:
+    channel = result.get('channel')
+    if channel is None:
         return {}
-		
-	location = geometry.get('location')
-    if location is None:
-        return {}
-	
-	
-	baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-	lat=location.get('lat')
-	lng=location.get('lng')
-   
-    yql_url = baseurl + '&location='+lat+','+lng
-    newResult = urlopen(yql_url).read()
-	
-	newResults=newResult.get('results')
-	   if newResults is None:
-        return {}
-	#for d in newResults:
 
+    item = channel.get('item')
+    location = channel.get('location')
+    units = channel.get('units')
+    if (location is None) or (item is None) or (units is None):
+        return {}
 
-    
+    condition = item.get('condition')
+    if condition is None:
+        return {}
+
+    # print(json.dumps(item, indent=4))
+
+    speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
+             ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
+
+    print("Response:")
+    print(speech)
 
     return {
-        "speech": yql_url,
-        "displayText": yql_url,
+        "speech": "Yo Yo Ganesh",
+        "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample",
