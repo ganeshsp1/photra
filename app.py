@@ -99,14 +99,12 @@ def makeWebhookResult(data):
     photosList = "tets"
     for d in newResults:
         photos = d.get('photos')
-        if photos is None:
-            return {}
         #for photo in photos:
         #photosList = photos[ 0 ].get('photo_reference')
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
     yql_url = baseurl+photosList
     return {
-        "speech": "Hi",
+        "speech": str(lat),
         "displayText": "Hi",
         # "data": data,
         # "contextOut": [],
