@@ -85,11 +85,9 @@ def makeWebhookResult(data):
     if location is None:
         return {}
 	baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-	lat = location.get('lat')
-	lng = location.get('lng')
-   
-    #yql_url = baseurl + '&location=' + lat + ',' + lng
-	
+	#lat = location.get('lat')
+	#lng = location.get('lng')   
+    #yql_url = baseurl + '&location=' + lat + ',' + lng	
 	#newResults=newResult.get('results')
 	 #  if newResults is None:
       #  return {}
