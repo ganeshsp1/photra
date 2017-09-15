@@ -105,7 +105,7 @@ def makeWebhookResult(data):
     yql_url = baseurl+photosList
     return {
         "speech": str(lat) + "," + str(lng),
-        "displayText": "Hi",
+        "displayText": result,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample",
