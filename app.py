@@ -110,39 +110,35 @@ def makeWebhookResult(data):
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample",
-		"messages": [
-  {
-    "type": 0,
-    "speech": ""
-  },
-  {
-    "type": 1,
-    "title": "",
-    "subtitle": "",
-    "imageUrl": "",
-    "buttons": [
-      {
-        "text": "button",
-        "postback": "payload"
-      }
-    ],
-  },
-  {
-    "type": 2,
-    "replies": [
-      "one",
-      "two"
-    ]   
-  },  
-  {
-    "type": 3,
-    "imageUrl": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
-  },
-  {
-    "type": 4,
-    "payload": {}
-  }
-]
+	    "messages": [
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Hi"
+        },
+        {
+          "type": "basic_card",
+          "platform": "google",
+          "title": "TajMahal",
+          "subtitle": "Sub",
+          "formattedText": "text",
+          "image": {
+            "url": "http://webneel.com/daily/sites/default/files/images/daily/04-2014/4-taj-mahal-photos.preview.jpg"
+          },
+          "buttons": [
+            {
+              "title": "IBS",
+              "openUrlAction": {
+                "url": "https://portal.ibsplc.com/Home.aspx"
+              }
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "speech": "The weather is awesome"
+        }
+      ]
     }
 
 
