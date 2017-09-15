@@ -105,64 +105,12 @@ def makeWebhookResult(data):
     print(speech)
 
     return {
-    
         "speech": "Yo Yo Ganesh",
         "displayText": speech,
-         "data": {
-  'google': {
-    'expectUserResponse': true,
-    'isSsml': false,
-    'noInputPrompts': [],
-    'richResponse': {
-      'items': [
-        {
-          'simpleResponse': {
-            'textToSpeech': 'hello',
-            'displayText': 'hi'
-          }
-        }
-      ],
-      'suggestions': [
-        {
-          'title': 'Say this'
-        },
-        {
-          'title': 'or this'
-        }
-      ]
-    },
-    'systemIntent': {
-      'intent': 'actions.intent.OPTION',
-      'data': {
-        '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
-        'listSelect': {
-          'items': [
-            {
-              'optionInfo': {
-                'key': 'key1',
-                'synonyms': [
-                  'key one'
-                ]
-              },
-              'title': ''
-            },
-            {
-              'optionInfo': {
-                'key': 'key2',
-                'synonyms': [
-                  'key two'
-                ]
-              },
-              'title': ''
-            }
-          ]
-        }
-      }
-    }
-  }
-},
+        # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"}
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 if __name__ == '__main__':
