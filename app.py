@@ -89,41 +89,23 @@ def makeWebhookResult(data):
 	
 	
 	baseurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&radius=500"
-
+	lat=location.get('lat')
+	lng=location.get('lng')
    
-    yql_url = baseurl + '&location='+location.get('lat')+','+location.get('lng')
+    yql_url = baseurl + '&location='+lat+','+lng
     newResult = urlopen(yql_url).read()
 	
 	newResults=newResult.get('results')
 	   if newResults is None:
         return {}
-	for d in newResults:
+	#for d in newResults:
 
-	geometry = newResults.get('geometry')
-    if geometry is None:
-        return {}
 
-    item = channel.get('item')
-    location = channel.get('location')
-    units = channel.get('units')
-    if (location is None) or (item is None) or (units is None):
-        return {}
-
-    condition = item.get('condition')
-    if condition is None:
-        return {}
-
-    # print(json.dumps(item, indent=4))
-
-    speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
-             ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
-
-    print("Response:")
-    print(speech)
+    
 
     return {
         "speech": yql_url,
-        "displayText": speech,
+        "displayText": yql_url,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample",
