@@ -90,7 +90,7 @@ def makeWebhookResult(data):
     
     lat = location.get('lat')
     lng = location.get('lng')
-    yql_url = "baseurl&location="
+    yql_url = baseurl+" &location=" + str(lat) + "," + str(lng)
 #newResults=newResult.get('results')
  #  if newResults is None:
       #  return {}
