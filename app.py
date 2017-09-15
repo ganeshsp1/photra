@@ -92,7 +92,7 @@ def makeWebhookResult(data):
 	lat=location.get('lat')
 	lng=location.get('lng')
    
-    yql_url = 'location='+lat+','+lng
+    yql_url = 'location=' + lat + ',' + lng
 
 
     
