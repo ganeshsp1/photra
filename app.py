@@ -97,9 +97,9 @@ def makeWebhookResult(data):
     if newResults is None:
         return {}
     photosList = "tets"
-	newResults = json.dumps(newResults, indent=4)
+	#newResults = json.dumps(newResults, indent=4)
     for d in newResults:
-		yql_url1 = baseurl + str(d)
+		yql_url1 = baseurl + str(json.dumps(d, indent=4))
         photos = d.get('photos')
         #for photo in photos:
 			#photosList = photos[ 0 ].get('photo_reference')
