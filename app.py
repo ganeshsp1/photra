@@ -105,16 +105,16 @@ def makeWebhookResult(data):
     newResults=newResult.get('results')
     if newResults is None:
         return {}
-    photosList = "tets"
+    photosList = []
     #newResults = json.dumps(newResults, indent=4)
     #yql_url1 = newResults
-
-    #for d in newResults:
-    photos = newResults[0].get('photos')
-        #for photo in photos:
-    photosList = photos[ 0 ].get('photo_reference')
+    nameList = []
+    for d in newResults:
+        photos = d.get('photos')
+        name = d.get('name')
+        photosList.append(photos[ 0 ].get('photo_reference'))
+        nameList.append(name[0])
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
-    yql_url1 = baseurl + str(photosList)
     return {
         "speech": "Test",
         "displayText": "Test",
@@ -137,7 +137,7 @@ def makeWebhookResult(data):
               },
               "title": "tAJmAHAL",
               "image": {
-                "url": yql_url1
+                "url": baseurl + str(photosList[0])
               }
             },
             {
@@ -147,7 +147,7 @@ def makeWebhookResult(data):
               },
               "title": "eFFIEL TOWER",
               "image": {
-                "url": yql_url1
+                "url": baseurl + str(photosList[1])
               }
             }
           ]
