@@ -79,7 +79,7 @@ def makeWebhookResult(data):
 
     print("PlacesResponse:")
     print(json.dumps(data, indent=4))
-	
+    
     results = data.get('results')
     print("Results:")
     print(json.dumps(results, indent=4))
@@ -100,7 +100,7 @@ def makeWebhookResult(data):
     yql_url = baseurl + "&location=" + str(lat) + "," + str(lng)
     result = urlopen(yql_url).read()
     newResult = json.loads(result)
-	print("PlacePhotoResponse:")
+    print("PlacePhotoResponse:")
     print(json.dumps(newResult, indent=4))
     newResults=newResult.get('results')
     if newResults is None:
