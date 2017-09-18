@@ -100,6 +100,8 @@ def makeWebhookResult(data):
     yql_url = baseurl + "&location=" + str(lat) + "," + str(lng)
     result = urlopen(yql_url).read()
     newResult = json.loads(result)
+	print("PlacePhotoResponse:")
+    print(json.dumps(newResult, indent=4))
     newResults=newResult.get('results')
     if newResults is None:
         return {}
