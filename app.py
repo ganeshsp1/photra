@@ -55,6 +55,8 @@ def processRequest(req):
         return {}
     baseurl = "https://maps.googleapis.com/maps/api/geocode/json?address="
     yql_query = makeYqlQuery(req)
+    print("query:")
+    print(json.dumps(yql_query, indent=4))
     if yql_query is None:
         return {}
     yql_url = baseurl + yql_query
@@ -76,6 +78,8 @@ def makeYqlQuery(req):
 def makeWebhookResult(data):
 
     results = data.get('results')
+    print("Results:")
+    print(json.dumps(yql_query, indent=4))
     if results is None:
         return {}
         
