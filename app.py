@@ -33,6 +33,7 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
+def cityName
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -70,7 +71,7 @@ def makeYqlQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
-
+	cityName = city
     return city
 
 def makeWebhookResult(data):
@@ -106,8 +107,8 @@ def makeWebhookResult(data):
     baseurl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCXLMsw0sL_TrHjtgR7DjEM3gHKb5QnJzs&photoreference="
     yql_url1 = baseurl + str(photosList)
     return {
-        "speech": str(lat) + "," + str(lng),
-        "displayText": yql_url,
+        "speech": cityName,
+        "displayText": cityName,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample",
