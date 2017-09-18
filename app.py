@@ -57,6 +57,7 @@ def processRequest(req):
     yql_query = makeYqlQuery(req)
     print("query:")
     print(json.dumps(yql_query, indent=4))
+    yql_query.replace(" ", "")
     if yql_query is None:
         return {}
     yql_url = baseurl + yql_query
