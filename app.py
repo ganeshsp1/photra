@@ -113,7 +113,7 @@ def makeWebhookResult(data):
         photos = d.get('photos')
         name = d.get('name')
         if photos[ 0 ].get('photo_reference') is None:
-            
+            print("None detected")
         else
         photosList.append(photos[ 0 ].get('photo_reference'))
         nameList.append(name)
