@@ -125,7 +125,7 @@ def makeWebhookResult(data):
               },
               "title": "tAJmAHAL",
               "image": {
-                "url": yql_url
+                "url": yql_url1
               }
             },
             {
@@ -135,7 +135,7 @@ def makeWebhookResult(data):
               },
               "title": "eFFIEL TOWER",
               "image": {
-                "url": yql_url
+                "url": yql_url1
               }
             }
           ]
