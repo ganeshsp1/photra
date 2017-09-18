@@ -71,7 +71,7 @@ def makeYqlQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
-	cityName = city
+    cityName = city
     return city
 
 def makeWebhookResult(data):
