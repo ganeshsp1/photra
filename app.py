@@ -77,9 +77,12 @@ def makeYqlQuery(req):
 
 def makeWebhookResult(data):
 
+    print("PlacesResponse:")
+    print(json.dumps(data, indent=4))
+	
     results = data.get('results')
     print("Results:")
-    print(json.dumps(yql_query, indent=4))
+    print(json.dumps(results, indent=4))
     if results is None:
         return {}
         
