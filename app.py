@@ -105,6 +105,7 @@ def makeWebhookResult(data):
     print(json.dumps(newResult, indent=4))
     newResults=newResult.get('results')
     if newResults is None:
+        print("New Results None detected")
         return {}
     photosList = []
     #newResults = json.dumps(newResults, indent=4)
